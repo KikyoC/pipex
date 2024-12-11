@@ -6,7 +6,7 @@
 #    By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 09:30:05 by tom               #+#    #+#              #
-#    Updated: 2024/12/11 11:21:46 by togauthi         ###   ########.fr        #
+#    Updated: 2024/12/11 14:03:56 by togauthi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ MANDATORY_SRCS = mandatory/pipex.c \
 	mandatory/setup.c
 
 BONUS_SRCS = bonus/pipex_bonus.c \
-	bonus/setup_bonus.c
+	bonus/setup_bonus.c \
+	bonus/heredoc_bonus.c \
 
 LIBFT = libft.a
 GNL = gnl.a
@@ -48,7 +49,7 @@ $(LIBFT):
 	@mv libft/libft.a ./
 
 $(GNL):
-	@echo "$(YELLOW)Compiling get_next_line... $(WHITE)]" 
+	@echo "$(YELLOW)Compiling get_next_line... $(WHITE)" 
 	@make --no-print-directory -C gnl all
 	@mv gnl/gnl.a ./
 

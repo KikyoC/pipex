@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:02:53 by tom               #+#    #+#             */
-/*   Updated: 2024/12/11 10:00:14 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:57:18 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	free_split(char **split)
 	free(split);
 }
 
-int	return_error(char *error, int fd, int type)
+/* return_error:
+*	Handle some errors
+*/
+int	return_error(char *error, int fd, int type, int errcode)
 {
 	if (fd > 0)
 		close(fd);
@@ -38,7 +41,7 @@ int	return_error(char *error, int fd, int type)
 		perror(error);
 	else
 		ft_putstr_fd(error, STDERR_FILENO);
-	return (1);
+	return (errcode);
 }
 
 /* multiple_close:

@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:30:35 by tom               #+#    #+#             */
-/*   Updated: 2024/12/11 10:54:55 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:59:51 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,39 +56,6 @@ int	parse(int argc, char **argv)
 		i++;
 	}
 	return (1);
-}
-
-/* here_doc:
-*	Take a delimiter as argument
-*	Handle here_doc
-*/
-int	here_doc(char *delim)
-{
-	int		hfd[2];
-	int		len;
-	char	*s;
-
-	if (pipe(hfd) == -1)
-	{
-		perror("Failed to create pipe");
-		return (-1);
-	}
-	len = ft_strlen(delim);
-	ft_putstr_fd(">", 1);
-	s = get_next_line(0);
-	while (s)
-	{
-		if ((ft_memcmp(delim, s, len) == 0)
-			|| (ft_memcmp(delim, "EOF", 3) && s[0] == '\0'))
-			break ;
-		ft_putstr_fd(s, hfd[1]);
-		ft_putstr_fd(">", 1);
-		free(s);
-		s = get_next_line(0);
-	}
-	free(s);
-	close(hfd[1]);
-	return (hfd[0]);
 }
 
 /* main:

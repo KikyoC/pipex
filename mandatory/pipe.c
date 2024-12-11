@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:22:15 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/11 10:03:46 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:57:57 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	setup_pipe(int *fds[3])
 
 	if (pipe(p) < 0)
 	{
-		return_error("Cannot open pipe", *fds[0], 1);
+		return_error("Cannot open pipe", *fds[0], 1, 1);
 		exit(1);
 	}
 	(*fds)[1] = p[1];

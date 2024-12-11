@@ -6,3 +6,4 @@ pipex
 libft/*.o
 out
 gnl.a
+gnl/*.o
