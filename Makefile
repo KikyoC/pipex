@@ -6,7 +6,7 @@
 #    By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 09:30:05 by tom               #+#    #+#              #
-#    Updated: 2024/12/11 14:03:56 by togauthi         ###   ########.fr        #
+#    Updated: 2024/12/11 16:47:36 by togauthi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ COMMON_SRCS = mandatory/execution.c \
 	mandatory/utils.c \
 	mandatory/path.c \
 	mandatory/pids.c \
-	mandatory/pipe.c
+	mandatory/pipe.c \
+	mandatory/arg_fixer.c \
+	
 
 MANDATORY_SRCS = mandatory/pipex.c \
 	mandatory/setup.c

@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:36:19 by tom               #+#    #+#             */
-/*   Updated: 2024/12/11 13:57:27 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:46:27 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ char	**no_env(char **res);
 char	**build_arg(char *arg, char **envp);
 void	default_pipe(int fds[3]);
 void	setup_pipe(int *fds[3]);
+char	**arg_fixer(char **args);
 
 #endif
