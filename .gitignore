@@ -1,0 +1,8 @@
+libft.a
+objs/
+infile
+outfile
+pipex
+libft/*.o
+out
+gnl.a

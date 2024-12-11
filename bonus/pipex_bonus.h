@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 09:36:19 by tom               #+#    #+#             */
-/*   Updated: 2024/12/11 10:51:15 by togauthi         ###   ########.fr       */
+/*   Created: 2024/12/11 10:54:15 by togauthi          #+#    #+#             */
+/*   Updated: 2024/12/11 11:15:32 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -33,5 +33,8 @@ char	**no_env(char **res);
 char	**build_arg(char *arg, char **envp);
 void	default_pipe(int fds[3]);
 void	setup_pipe(int *fds[3]);
+char	*get_next_line(int fd);
+int		setup_heredoc_loop(int fds[3], char **args, char **envp, int *error);
+int		setup_middle_loop(int fds[3], char *arg, char **envp, int *error);
 
 #endif

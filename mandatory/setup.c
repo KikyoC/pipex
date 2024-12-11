@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:33:21 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/11 10:16:53 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:15:39 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ int	setup_end_loop(int fds[3], char **args, char **envp, int *error)
 	fds[2] = -1;
 	return (1);
 }
-
