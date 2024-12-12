@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:03:45 by tom               #+#    #+#             */
-/*   Updated: 2024/12/11 16:46:56 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:29:05 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	execommand(int p[3], char *path, char **argv, char **envp)
 		multiple_close(p[0], p[1], p[2]);
 		execve(path, argv, envp);
 		perror("Pipex execution");
-		exit(0);
+		exit(1);
 	}
 	multiple_close(p[0], p[1], -1);
 	return (f);
@@ -111,9 +111,10 @@ int	execute(int fds[3], char *cmd, char **envp, int *pids)
 	int		pid;
 
 	args = build_arg(cmd, envp);
-	arg_fixer(args);
+	args = arg_fixer(args);
 	if (!args)
 	{
+		printf("NULL\n");
 		multiple_close(fds[0], fds[1], -1);
 		return (0);
 	}
