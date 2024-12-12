@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:59:56 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/11 14:24:11 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:18:17 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	is_end_only(char *line, char *delim, size_t len)
 	line_len = ft_strlen(line);
 	if (line_len > 0 && line[line_len - 1] == '\n')
 		line_len --;
-	printf("%d | %zu-%zu\n", ft_memcmp(delim, line, len), len, line_len);
 	return ((ft_memcmp(delim, line, len) == 0 && len == line_len)
 		|| (ft_memcmp(delim, "EOF", 3) == 0
 			&& line[0] == '\0'
