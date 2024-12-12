@@ -6,12 +6,15 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:34:08 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/12 15:06:11 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:13:12 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+/* special_join:
+*	Like a join but add a space between 2 args
+*/
 char	*special_join(char *s1, char *s2)
 {
 	char	*tmp;
@@ -32,6 +35,12 @@ char	*special_join(char *s1, char *s2)
 	return (res);
 }
 
+/*	give_arg:
+*	Imagine that we have an array like this:
+*	"echo", "'Hello" "I" "love" "you'"
+*	It will get 4 last elements and return:
+*	"Hello I love you"
+*/
 char	*give_arg(char **args, int *i)
 {
 	char	*res;
@@ -59,6 +68,9 @@ char	*give_arg(char **args, int *i)
 	return (res);
 }
 
+/* add_one:
+*	It's a kind of realloc
+*/
 char	**add_one(char **args, char *to_add)
 {
 	int		i;
