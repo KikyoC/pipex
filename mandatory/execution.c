@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:03:45 by tom               #+#    #+#             */
-/*   Updated: 2024/12/12 17:22:38 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:46:45 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 *	Create a child and execute the command.
 *	Returns the child's PID
 */
-
 int	execommand(int p[3], char *path, char **argv, char **envp)
 {
 	int		f;
@@ -36,7 +35,7 @@ int	execommand(int p[3], char *path, char **argv, char **envp)
 		multiple_close(p[0], p[1], p[2]);
 		execve(path, argv, envp);
 		perror("Pipex execution");
-		exit(1);
+		return (-1);
 	}
 	multiple_close(p[0], p[1], -1);
 	return (f);
@@ -51,7 +50,7 @@ char	*get_command(char **path, char *command)
 	char	*res;
 	char	*tmp;
 
-	if (access(command, X_OK) == 0)
+	if (access(command, X_OK) == 0 && access(command, F_OK) == 0)
 		return (command);
 	tmp = ft_strdup(command);
 	if (!tmp)
@@ -115,8 +114,7 @@ int	execute(int fds[3], char *cmd, char **envp, int *pids)
 		args = arg_fixer(args);
 	if (!args)
 	{
-		printf("fds[0]: %d, fds[1]: %d, fds[2]: %d\n", fds[0], fds[1], fds[2]);
-		multiple_close(fds[0], fds[1], -1);
+		multiple_close(fds[0], fds[1], fds[2]);
 		return (0);
 	}
 	pid = execommand(fds, args[0], args, envp);

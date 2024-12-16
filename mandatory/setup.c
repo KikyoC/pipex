@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:33:21 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/12 17:17:02 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/13 11:01:13 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	setup_first_loop(int fds[3], char *arg, char **envp, int *error)
 	if (!check_args(arg, envp, fds))
 	{
 		*error = 127;
+		close(fds[0]);
 		return (-1);
 	}
 	if (fds[0] == -1)

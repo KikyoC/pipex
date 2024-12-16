@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:29:12 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/11 10:07:41 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/13 10:56:33 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*get_command_path(char **path, char *command)
 	while (path[i])
 	{
 		join = ft_strjoin(path[i], command);
-		if (access(join, F_OK) == 0)
+		if (access(join, X_OK) == 0)
 		{
 			free(join);
 			return (path[i]);

@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:30:35 by tom               #+#    #+#             */
-/*   Updated: 2024/12/12 17:09:58 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:56:49 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,30 @@ int	parse(int argc, char **argv)
 	return (1);
 }
 
+int	infile(char *file)
+{
+	int	fd;
+	int	p[2];
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		if (pipe(p) < 0)
+		{
+			perror("Cannot create pipe");
+			return (-1);
+		}
+		close(p[1]);
+		return (p[0]);
+	}
+	return (fd);
+}
+
 /* main:
 *	Main function
 */
 int	main(int argc, char **argv, char **envp)
 {
-	int	infile;
 	int	fds[3];
 
 	if (argc < 5 || !parse(argc, argv))
@@ -72,20 +90,29 @@ int	main(int argc, char **argv, char **envp)
 	{
 		if (argc < 6)
 			return (0);
-		infile = here_doc(argv[2]);
-		if (infile < 0)
+		fds[0] = here_doc(argv[2]);
+		if (fds[0] < 0)
 			return (1);
 		argv = &argv[1];
 		argc--;
 	}
-	else if (access(argv[1], R_OK) == 0)
-		infile = open(argv[1], O_RDONLY);
 	else
-		infile = -1;
-	fds[0] = -1;
-	if (infile > 0)
-		fds[0] = infile;
+		fds[0] = infile(argv[1]);
 	fds[1] = -1;
 	fds[2] = -1;
+	if (fds[0] < 0)
+		return (1);
 	return (loop(fds, argc, argv, envp));
+}
+
+int mainn(void)
+{
+	char	*buffer;
+	
+	printf("%d\n", open("infile", O_RDONLY));
+	buffer = ft_calloc(5, 1);
+	printf("Buffer: %zd | %s\n", read(3, buffer, 0), buffer);
+	close(3);
+	perror("error");
+	return (0);
 }

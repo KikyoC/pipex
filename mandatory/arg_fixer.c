@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:34:08 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/12 15:13:12 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/16 10:30:49 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ char	*special_join(char *s1, char *s2)
 
 /*	give_arg:
 *	Imagine that we have an array like this:
-*	"echo", "'Hello" "I" "love" "you'"
+*	"echo", "'Hello", "I", "love", "you'"
 *	It will get 4 last elements and return:
 *	"Hello I love you"
 */
-char	*give_arg(char **args, int *i)
+char	*give_arg(char **args, int *i, char c)
 {
 	char	*res;
 	char	*tmp;
@@ -52,10 +52,10 @@ char	*give_arg(char **args, int *i)
 		return (NULL);
 	free(args[0]);
 	while (args[++*i])
-		if (ft_strchr(args[*i], '\''))
+		if (ft_strchr(args[*i], c))
 			break ;
 	*i = 1;
-	while (res[ft_strlen(res) - 1] != '\'')
+	while (res[ft_strlen(res) - 1] != c)
 	{
 		tmp = ft_strdup(res);
 		free(res);
@@ -88,6 +88,31 @@ char	**add_one(char **args, char *to_add)
 	return (res);
 }
 
+char	**fix_doublequotes(char **args)
+{
+	int		i;
+	int		to_add;
+	char	**res;
+
+	i = 1;
+	res = ft_calloc(2, sizeof(char *));
+	res[0] = args[0];
+	while (args[0] && args[i])
+	{
+		to_add = 0;
+		if (args[i][0] == '"')
+			res = add_one(res, give_arg(&args[i], &to_add, '"'));
+		else
+			res = add_one(res, args[i]);
+		if (to_add)
+			i += to_add;
+		else
+			i++;
+	}
+	free(args);
+	return (res);
+}
+
 /* arg_fixer:
 *	Take the command argument as parameter
 *	Try to fix quotes issue
@@ -105,7 +130,7 @@ char	**arg_fixer(char **args)
 	{
 		to_add = 0;
 		if (args[i][0] == '\'')
-			res = add_one(res, give_arg(&args[i], &to_add));
+			res = add_one(res, give_arg(&args[i], &to_add, '\''));
 		else
 			res = add_one(res, args[i]);
 		if (to_add)
@@ -114,5 +139,5 @@ char	**arg_fixer(char **args)
 			i++;
 	}
 	free(args);
-	return (res);
+	return (fix_doublequotes(res));
 }

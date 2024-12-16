@@ -6,12 +6,15 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:59:56 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/12 17:18:17 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/16 10:50:10 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
+/* is_end_only:
+*	Check if we are at the end of here_doc
+*/
 int	is_end_only(char *line, char *delim, size_t len)
 {
 	size_t	line_len;
@@ -19,10 +22,7 @@ int	is_end_only(char *line, char *delim, size_t len)
 	line_len = ft_strlen(line);
 	if (line_len > 0 && line[line_len - 1] == '\n')
 		line_len --;
-	return ((ft_memcmp(delim, line, len) == 0 && len == line_len)
-		|| (ft_memcmp(delim, "EOF", 3) == 0
-			&& line[0] == '\0'
-			&& ft_strlen(line) == 0));
+	return (ft_memcmp(delim, line, len) == 0 && len == line_len);
 }
 
 /* here_doc:
@@ -42,7 +42,9 @@ int	here_doc(char *delim)
 	while (1)
 	{
 		s = get_next_line(0);
-		if (!s)
+		if (!s && ft_memcmp(delim, "EOF", 4) == 0)
+			break ;
+		else if (!s)
 			continue ;
 		if (is_end_only(s, delim, len))
 			break ;
@@ -52,5 +54,6 @@ int	here_doc(char *delim)
 	}
 	free(s);
 	close(hfd[1]);
+	printf("File descriptor: %d\n", hfd[0]);
 	return (hfd[0]);
 }
