@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:03:45 by tom               #+#    #+#             */
-/*   Updated: 2024/12/16 13:46:45 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:25:35 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,13 @@ int	execute(int fds[3], char *cmd, char **envp, int *pids)
 	char	**args;
 	int		pid;
 
+	printf("Try to execute\n");
 	args = build_arg(cmd, envp);
 	if (args)
 		args = arg_fixer(args);
 	if (!args)
 	{
+		free_split(args);
 		multiple_close(fds[0], fds[1], fds[2]);
 		return (0);
 	}

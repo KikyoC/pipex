@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:33:21 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/16 13:59:53 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:38:09 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 int	check_args(char *arg, char **envp, int *error)
 {
 	char	**args;
+	int		fd_try;
 
 	args = build_arg(arg, envp);
 	if (!args)
@@ -25,6 +26,14 @@ int	check_args(char *arg, char **envp, int *error)
 		*error = 127;
 		return (0);
 	}
+	fd_try = open(args[0], !__O_DIRECTORY);
+	printf("Opened %s with %d fd\n", args[0], fd_try);
+	if (fd_try < 0)
+	{
+		printf("Itz a dir");
+		return (0);
+	}
+	close(fd_try);
 	free_split(args);
 	return (1);
 }
@@ -39,6 +48,7 @@ int	setup_first_loop(int fds[3], char *arg, char **envp, int *error)
 	*error = 0;
 	if (!check_args(arg, envp, error))
 	{
+		printf("Here\n");
 		close(fds[0]);
 		fds[0] = -1;
 		return (0);
@@ -93,14 +103,6 @@ int	setup_middle_loop(int fds[3], char *arg, char **envp, int *error)
 int	setup_end_loop(int fds[3], char **args, char **envp, int *error)
 {
 	*error = 0;
-	if (!check_args(args[0], envp, error))
-		return (0);
-	if (access(args[1], F_OK) == 0 && access(args[1], W_OK) != 0)
-	{
-		*error = 1;
-		return (0);
-	}
-	fds[0] = fds[2];
 	fds[1] = open(args[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (!fds[1])
 	{
@@ -108,6 +110,18 @@ int	setup_end_loop(int fds[3], char **args, char **envp, int *error)
 		*error = 1;
 		return (0);
 	}
+	if (!check_args(args[0], envp, error))
+	{
+		close(fds[1]);
+		return (0);
+	}
+	if (access(args[1], F_OK) == 0 && access(args[1], W_OK) != 0)
+	{
+		close(fds[1]);
+		*error = 1;
+		return (0);
+	}
+	fds[0] = fds[2];
 	fds[2] = -1;
 	if (fds[0] < 0)
 		default_pipe(fds);

@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:30:35 by tom               #+#    #+#             */
-/*   Updated: 2024/12/16 13:56:49 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:35:48 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,4 @@ int	main(int argc, char **argv, char **envp)
 	if (fds[0] < 0)
 		return (1);
 	return (loop(fds, argc, argv, envp));
-}
-
-int mainn(void)
-{
-	char	*buffer;
-	
-	printf("%d\n", open("infile", O_RDONLY));
-	buffer = ft_calloc(5, 1);
-	printf("Buffer: %zd | %s\n", read(3, buffer, 0), buffer);
-	close(3);
-	perror("error");
-	return (0);
 }
