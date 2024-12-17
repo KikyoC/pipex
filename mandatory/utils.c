@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:02:53 by tom               #+#    #+#             */
-/*   Updated: 2024/12/12 11:24:41 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:03:55 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 /* free_split
 *	Free splited varible
 */
-void	free_split(char **split)
+void	*free_split(char **split)
 {
 	int	i;
 
 	if (!split)
-		return ;
+		return (NULL);
 	i = 0;
 	while (split[i])
 	{
@@ -28,6 +28,7 @@ void	free_split(char **split)
 		i++;
 	}
 	free(split);
+	return (NULL);
 }
 
 /* return_error:

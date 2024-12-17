@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 09:36:19 by tom               #+#    #+#             */
-/*   Updated: 2024/12/12 12:53:40 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:04:13 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/wait.h>
 
 char	*get_command_path(char **path, char *command);
-void	free_split(char **str);
+void	*free_split(char **str);
 char	*get_path(char **envp);
 int		execute(int fds[3], char *cmd, char **envp, int *pids);
 int		return_error(char *error, int fd, int type, int errcode);
@@ -32,7 +32,6 @@ void	insert_pid(int *pids, int pid);
 char	**no_env(char **res);
 char	**build_arg(char *arg, char **envp);
 void	default_pipe(int fds[3]);
-void	setup_pipe(int *fds[3]);
 char	**arg_fixer(char **args);
 
 #endif

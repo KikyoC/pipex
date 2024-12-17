@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:33:21 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/16 16:38:09 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:31:11 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,21 @@ int	check_args(char *arg, char **envp, int *error)
 	args = build_arg(arg, envp);
 	if (!args)
 	{
+		ft_putstr_fd("Command not found\n", 2);
 		*error = 127;
 		return (0);
 	}
-	fd_try = open(args[0], !__O_DIRECTORY);
-	printf("Opened %s with %d fd\n", args[0], fd_try);
-	if (fd_try < 0)
+	fd_try = open(args[0], __O_DIRECTORY);
+	free_split(args);
+	if (fd_try > 0)
 	{
-		printf("Itz a dir");
+		if (get_path(envp))
+			ft_putstr_fd("Command not found\n", 2);
+		else
+			ft_putstr_fd("You gave a directory\n", 2);
+		close(fd_try);
 		return (0);
 	}
-	close(fd_try);
-	free_split(args);
 	return (1);
 }
 
@@ -48,7 +51,6 @@ int	setup_first_loop(int fds[3], char *arg, char **envp, int *error)
 	*error = 0;
 	if (!check_args(arg, envp, error))
 	{
-		printf("Here\n");
 		close(fds[0]);
 		fds[0] = -1;
 		return (0);
@@ -104,9 +106,9 @@ int	setup_end_loop(int fds[3], char **args, char **envp, int *error)
 {
 	*error = 0;
 	fds[1] = open(args[1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (!fds[1])
+	if (!fds[1] || access(args[1], W_OK) != 0)
 	{
-		perror("Failed to open outfile");
+		perror("pipex");
 		*error = 1;
 		return (0);
 	}

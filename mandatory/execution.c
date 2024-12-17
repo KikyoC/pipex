@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:03:45 by tom               #+#    #+#             */
-/*   Updated: 2024/12/16 15:25:35 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:12:36 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*get_command(char **path, char *command)
 	char	*tmp;
 
 	if (access(command, X_OK) == 0 && access(command, F_OK) == 0)
-		return (command);
+			return (command);
 	tmp = ft_strdup(command);
 	if (!tmp)
 		return (NULL);
@@ -70,7 +70,6 @@ char	*get_command(char **path, char *command)
 *	Build the argument for the next execve call
 *	Split and change the first element by the right one if needed
 */
-
 char	**build_arg(char *arg, char **envp)
 {
 	char	**res;
@@ -84,17 +83,11 @@ char	**build_arg(char *arg, char **envp)
 		return (no_env(res));
 	path = ft_split(get_path(envp), ':');
 	if (!path)
-	{
-		free_split(res);
-		return (NULL);
-	}
+		return (free_split(res));
 	command = get_command(path, ft_strdup(res[0]));
 	free_split(path);
 	if (!command)
-	{
-		free_split(res);
-		return (NULL);
-	}
+		return (free_split(res));
 	free(res[0]);
 	res[0] = command;
 	return (res);
@@ -109,7 +102,6 @@ int	execute(int fds[3], char *cmd, char **envp, int *pids)
 	char	**args;
 	int		pid;
 
-	printf("Try to execute\n");
 	args = build_arg(cmd, envp);
 	if (args)
 		args = arg_fixer(args);
