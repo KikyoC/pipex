@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:33:21 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/17 14:21:49 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:51:35 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	setup_first_loop(int fds[3], char *arg, char **envp, int *error)
 	int		p[2];
 
 	*error = 0;
-	if (!check_args(arg, envp, fds))
+	if (!check_args(arg, envp, error))
 	{
-		*error = 127;
 		close(fds[0]);
-		return (-1);
+		fds[0] = -1;
+		return (0);
 	}
 	if (fds[0] == -1)
 		default_pipe(fds);

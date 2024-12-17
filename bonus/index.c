@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 09:30:35 by tom               #+#    #+#             */
-/*   Updated: 2024/12/17 16:37:58 by togauthi         ###   ########.fr       */
+/*   Created: 2024/12/17 16:43:01 by togauthi          #+#    #+#             */
+/*   Updated: 2024/12/17 16:52:36 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
+
 /* loop:
 *	Take 3 fd, and input of main function
 *	Call execute for each argument
@@ -40,47 +41,6 @@ int	loop(int fds[3], int argc, char **argv, char **envp)
 		execute(fds, argv[i + 2], envp, pids);
 	multiple_close(fds[0], fds[1], fds[2]);
 	return (close_pids(pids, error));
-}
-
-/* parse:
-*	Iterate and on all arguments and try to find "" argument
-*/
-int	parse(int argc, char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (i < argc)
-	{
-		if (ft_strncmp("", argv[i], 1) == 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-/*infile:
-*	Open the file, if it fails, it will return a file descriptor
-*	with nothing inside
-*/
-int	infile(char *file)
-{
-	int	fd;
-	int	p[2];
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("No such file or directory\n", 2);
-		if (pipe(p) < 0)
-		{
-			perror("Cannot create pipe");
-			return (-1);
-		}
-		close(p[1]);
-		return (p[0]);
-	}
-	return (fd);
 }
 
 /* main:

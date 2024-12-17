@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 10:54:15 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/11 14:03:31 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:53:09 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ void	insert_pid(int *pids, int pid);
 char	**no_env(char **res);
 char	**build_arg(char *arg, char **envp);
 void	default_pipe(int fds[3]);
-void	setup_pipe(int *fds[3]);
 char	*get_next_line(int fd);
 int		setup_heredoc_loop(int fds[3], char **args, char **envp, int *error);
 int		setup_middle_loop(int fds[3], char *arg, char **envp, int *error);
 int		here_doc(char *delim);
+int		infile(char *file);
+int		parse(int argc, char **argv);
+int		check_args(char *arg, char **envp, int *error);
 
 #endif
