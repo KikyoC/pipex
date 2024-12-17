@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:30:26 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/11 09:44:28 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:17:47 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ int	close_pids(int *pids, int error)
 	while (pids[i] != -1)
 	{
 		waitpid(pids[i], &status, 0);
+		printf("Status: %d\n", status);
 		i++;
 	}
 	free(pids);
-	if (error > 1)
+	if (error > 0)
 		return (error);
-	return (status > 0 || error);
+	return (status > 0);
 }
 
 /* insert_pid:

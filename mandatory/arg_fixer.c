@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:34:08 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/16 10:30:49 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:38:19 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ char	**add_one(char **args, char *to_add)
 	return (res);
 }
 
+/* fix_doublequotes:
+*	Do the same thing as arg_fixer, but it handle double
+*	quotes instead of simple quotes
+*/
 char	**fix_doublequotes(char **args)
 {
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:59:56 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/16 10:50:10 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:22:53 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,5 @@ int	here_doc(char *delim)
 	}
 	free(s);
 	close(hfd[1]);
-	printf("File descriptor: %d\n", hfd[0]);
 	return (hfd[0]);
 }
