@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 13:03:45 by tom               #+#    #+#             */
-/*   Updated: 2024/12/17 10:12:36 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:49:03 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*get_command(char **path, char *command)
 	char	*tmp;
 
 	if (access(command, X_OK) == 0 && access(command, F_OK) == 0)
-			return (command);
+		return (command);
 	tmp = ft_strdup(command);
 	if (!tmp)
 		return (NULL);
