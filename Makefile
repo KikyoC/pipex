@@ -6,7 +6,7 @@
 #    By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 09:30:05 by tom               #+#    #+#              #
-#    Updated: 2024/12/17 16:47:03 by togauthi         ###   ########.fr        #
+#    Updated: 2024/12/18 10:37:02 by togauthi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ COMMON_SRCS = mandatory/execution.c \
 
 MANDATORY_SRCS = mandatory/index.c \
 
-BONUS_SRCS = bonus/index.c \
+BONUS_SRCS = bonus/index_bonus.c \
 	bonus/setup_bonus.c \
 	bonus/heredoc_bonus.c \
 
