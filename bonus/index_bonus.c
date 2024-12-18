@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:43:01 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/18 10:53:37 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:44:18 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	fds[3];
 
-	if (argc < 5 || !parse(argc, argv))
+	if (argc < 5)
 		return (1);
 	if (ft_strncmp("here_doc", argv[1], 9) == 0)
 	{

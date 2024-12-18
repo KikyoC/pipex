@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:45:46 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/17 16:46:12 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:51:14 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	fds[3];
 
-	if (argc != 5 || !parse(argc, argv))
+	if (argc != 5)
 		return (1);
 	fds[0] = infile(argv[1]);
 	fds[1] = -1;

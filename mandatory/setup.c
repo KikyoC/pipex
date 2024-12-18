@@ -6,11 +6,24 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:33:21 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/18 11:30:51 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:50:59 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+/* skip_spaces:
+*	Return the number of spaces
+*/
+int	skip_spaces(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] == ' ')
+		i++;
+	return (i);
+}
 
 /* check_args:
 *	Check if is it possible to execute the command
@@ -20,6 +33,8 @@ int	check_args(char *arg, char **envp, int *error)
 	char	**args;
 	int		fd_try;
 
+	if (ft_strncmp(&arg[skip_spaces(arg)], "", 1) == 0)
+		return (0);
 	args = build_arg(arg, envp);
 	if (!args)
 	{

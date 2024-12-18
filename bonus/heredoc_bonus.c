@@ -6,7 +6,7 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:59:56 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/17 13:22:53 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:42:28 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ int	here_doc(char *delim)
 	while (1)
 	{
 		s = get_next_line(0);
-		if (!s && ft_memcmp(delim, "EOF", 4) == 0)
+		if (!s)
 			break ;
-		else if (!s)
-			continue ;
 		if (is_end_only(s, delim, len))
 			break ;
 		ft_putstr_fd(s, hfd[1]);

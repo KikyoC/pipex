@@ -6,28 +6,11 @@
 /*   By: togauthi <togauthi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 10:13:02 by togauthi          #+#    #+#             */
-/*   Updated: 2024/12/17 16:46:08 by togauthi         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:53:28 by togauthi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-/* parse:
-*	Iterate and on all arguments and try to find "" argument
-*/
-int	parse(int argc, char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (i < argc)
-	{
-		if (ft_strncmp("", argv[i], 1) == 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 /*infile:
 *	Open the file, if it fails, it will return a file descriptor
